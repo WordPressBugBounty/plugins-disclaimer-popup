@@ -278,3 +278,49 @@ function wpdp_sidebar_post( $meta_boxes ) {
 
     return $meta_boxes;
 }
+
+/* ----------------------------- |
+    POPUP IMAGE LAYOUT
+| ----------------------------- */
+
+add_filter( 'rwmb_meta_boxes', 'wpdp_popup_layout_fields' );
+
+function wpdp_popup_layout_fields( $meta_boxes ) {
+    $meta_boxes[] = array(
+        'title'      => __( 'Popup image', 'wp-disclaimer-popup' ),
+        'id'         => 'wpdp-popup-image',
+        'post_types' => array( 'wp-disclaimer-popup' ),
+        'context'    => 'normal',
+        'priority'   => 'high',
+        'fields'     => array(
+            array(
+                'name'    => __( 'Image layout', 'wp-disclaimer-popup' ),
+                'id'      => 'wpdp_image_layout',
+                'type'    => 'select',
+                'std'     => 'none',
+                'options' => array(
+                    'none'   => __( 'No image', 'wp-disclaimer-popup' ),
+                    'left'   => __( 'Left image', 'wp-disclaimer-popup' ),
+                    'right'  => __( 'Right image', 'wp-disclaimer-popup' ),
+                    'top'    => __( 'Top image', 'wp-disclaimer-popup' ),
+                    'bottom' => __( 'Bottom image', 'wp-disclaimer-popup' ),
+                ),
+            ),
+            array(
+                'name'       => __( 'Image', 'wp-disclaimer-popup' ),
+                'id'         => 'wpdp_layout_image',
+                'type'       => 'single_image',
+                'image_size' => 'medium',
+                'desc'       => __( 'Upload a new image or choose one from the Media Library. It is used as the background of one area of the popup. The disclaimer text stays in the other area.', 'wp-disclaimer-popup' ),
+                'visible'    => array(
+                    'when'     => array(
+                        array( 'wpdp_image_layout', 'in', array( 'left', 'right', 'top', 'bottom' ) ),
+                    ),
+                    'relation' => 'and',
+                ),
+            ),
+        ),
+    );
+
+    return $meta_boxes;
+}

@@ -1,10 +1,10 @@
 === Disclaimer Popup ===
 Contributors: themeinthebox, marcodedo, magentacomunicazione
 Donate link: 
-Tags: disclaimer, popup, modal, alert, note, message, advice, caution
+Tags: disclaimer, popup, modal, alert, note
 Requires at least: 4.5
 Tested up to: 6.6.1
-Stable tag: 1.0.1
+Stable tag: 1.2.0
 Requires PHP: 5.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -21,6 +21,8 @@ This plugin is designed for all those sites that need to accept the conditions o
 
 Disclaimer Popup is a free plugin that's quick and easy to use. It will help you to quickly create a popup where you can show a disclaimer complete with texts and images, and where there is the possibility to show up to 2 buttons (one to accept and one to reject the conditions).
 
+On each disclaimer you can choose the image layout: No image, Left image, Right image, Top image, or Bottom image. When a position is selected, you can upload a new image or choose one from the Media Library. The image is used as the background of that part of the popup, and the disclaimer text stays in the remaining part.
+
 Disclaimer Popup is completely customizable: you can choose the colors and size of the popup, as well as the days of validity of the cookies.
 
 # WHAT TO EXPECT FROM THE PLUGIN
@@ -30,11 +32,12 @@ Disclaimer Popup is completely customizable: you can choose the colors and size 
 * Choose NOT to display the popup on one or more individual pages 
 * Improve the popup design to make it more consistent with the look of your site
 * Enter up to 2 buttons, one to accept and one to decline the disclaimer
+* Place an image on the left, right, top, or bottom of the popup. The image is a background, and the disclaimer text stays in the remaining area
 
 # HOW DOES IT WORK
 Once the plugin has been installed and activated, go to the new Disclaimer Popup menu and click on the Add New link.
 
-At this point you can create the disclaimer text, which will appear in the popup. You can use texts and images at will. When you have completed the text, click on the publish button.
+At this point you can create the disclaimer text, which will appear in the popup. You can use texts and images at will. In the same screen you can set the image layout and, if you choose a position, select the image that will sit beside the text. When you have completed the text, click on the publish button.
 
 Go to the Disclaimer Popup > Settings and enable the disclaimer functions, then choose from the drop-down menu the disclaimer you want to appear when accessing the site.
 
@@ -74,6 +77,10 @@ Go to Disclaimer Popup and you can load the new disclaimer
 
 
 == Changelog ==
+
+= 1.2.0 - 2026-10-01 =
+* Added an image layout selector on each disclaimer: No image, Left image, Right image, Top image, or Bottom image
+* When a position is selected, an image can be uploaded or chosen from the Media Library and is shown as a background, with the disclaimer text in the other part of the popup
 
 = 1.1.3 - 2023-11-20 =
 * Bug fixed (dashboard.php)

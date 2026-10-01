@@ -16,7 +16,7 @@
  * Plugin Name:       Disclaimer Popup
  * Plugin URI:        http://www.themeinthebox.com/wp-disclaimer-popup
  * Description:       It helps to quickly create pop-ups with disclaimers that appear when the website is opened. You can control many graphic parts of the popup, and you can also decide how many days the cookie is valid, before being requested again for the popup.
- * Version:           1.1.3
+ * Version:           1.2.0
  * Author:            ThemeintheBox
  * Author URI:        http://www.themeinthebox.com
  * License:           GPL-2.0+
@@ -35,7 +35,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'WP_DISCLAIMER_POPUP_VERSION', '1.1.3' );
+define( 'WP_DISCLAIMER_POPUP_VERSION', '1.2.0' );
 
 /**
  * The code that runs during plugin activation.

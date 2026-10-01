@@ -1,6 +1,59 @@
 <?php
 
-	
+function wpdp_render_popup( $agree_text, $decline_text, $decline_url, $expire ) {
+	$agreeText   = $agree_text;
+	$deplineText = $decline_text;
+	$deplineUrl  = $decline_url;
+
+	$layout    = (string) rwmb_meta( 'wpdp_image_layout' );
+	$positions = array( 'left', 'right', 'top', 'bottom' );
+	$image_url = '';
+	$image_alt = '';
+
+	if ( in_array( $layout, $positions, true ) ) {
+		$image = rwmb_meta( 'wpdp_layout_image', array( 'size' => 'full' ) );
+		if ( isset( $image[0] ) && is_array( $image[0] ) ) {
+			$image = $image[0];
+		}
+		if ( is_array( $image ) ) {
+			if ( ! empty( $image['full_url'] ) ) {
+				$image_url = $image['full_url'];
+			} elseif ( ! empty( $image['url'] ) ) {
+				$image_url = $image['url'];
+			}
+			if ( ! empty( $image['alt'] ) ) {
+				$image_alt = $image['alt'];
+			}
+		}
+	}
+
+	$classes = array( 'wpdp-white-popup', 'mfp-hide' );
+	$has_image = ( '' !== $image_url );
+	if ( $has_image ) {
+		$classes[] = 'wpdp-has-image';
+		$classes[] = 'wpdp-image-' . $layout;
+	}
+
+	echo '<div id="wp-disclaimer-popup" class="' . esc_attr( implode( ' ', $classes ) ) . '">';
+
+	if ( $has_image ) {
+		$aria = ( '' !== $image_alt )
+			? ' role="img" aria-label="' . esc_attr( $image_alt ) . '"'
+			: ' aria-hidden="true"';
+		echo '<div class="wpdp-layout">';
+		echo '<div class="wpdp-image" style="' . esc_attr( 'background-image:url(' . esc_url( $image_url ) . ')' ) . '"' . $aria . '></div>';
+		echo '<div class="wpdp-content">';
+	}
+
+	include plugin_dir_path( __FILE__ ) . 'template/modal-base.php';
+
+	if ( $has_image ) {
+		echo '</div></div>';
+	}
+
+	echo '</div>';
+}
+
 function wp_disclaimer_popup_function() {
 
 	$enable = rwmb_meta( 'wpdp_enable_disclaimer', array( 'object_type' => 'setting' ), 'wpdp_settings' );
@@ -35,10 +88,7 @@ function wp_disclaimer_popup_function() {
 		if ( $query->have_posts() && !$disable_single ) {
 			while ( $query->have_posts() ) {
 				$query->the_post();
-				// do something
-				echo '<div id="wp-disclaimer-popup" class="wpdp-white-popup mfp-hide">';
-					include_once ( plugin_dir_path( __FILE__ ) . 'template/modal-base.php' );
-				echo '</div>';
+				wpdp_render_popup( $agreeText, $deplineText, $deplineUrl, $expire );
 			}
 		} else {
 			// no posts found
@@ -70,10 +120,7 @@ function wp_disclaimer_popup_function() {
 			if ( $query->have_posts() ) {
 				while ( $query->have_posts() ) {
 					$query->the_post();
-					// do something
-					echo '<div id="wp-disclaimer-popup" class="wpdp-white-popup mfp-hide">';
-						include_once ( plugin_dir_path( __FILE__ ) . 'template/modal-base.php' );
-					echo '</div>';
+					wpdp_render_popup( $agreeText, $deplineText, $deplineUrl, $expire );
 				}
 			} else {
 				// no posts found
